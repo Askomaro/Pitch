@@ -127,3 +127,6 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+.main_task/.idea/
+.main_task/node_modules/
