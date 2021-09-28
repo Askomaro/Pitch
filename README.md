@@ -91,6 +91,8 @@ Main e2e UI tests that must be checked before a release (in my opinion):
 
 12-24. All the same tests for **User** logged in via Google
 
+_Notes_: of course there is a plenty other test cases which should be checked, but we limited in time
+
 #### *Non-Functional(Optional, [ideas, improvements]):*
     
 1. Performance tests are executed if needed  
@@ -98,7 +100,8 @@ Main e2e UI tests that must be checked before a release (in my opinion):
 ---
 '' _Question: how would you manage logging in if you
 couldn't use the Guest login?_ ''  
-**_Answer:_**
+
+**_Answers:_**
 1. There's second option that I see on Login page is via Google email account    
 2. We can use jwt token as request's header for an API call  
 3. We can use jwt token and add it as a key in Local Storage  
@@ -106,7 +109,7 @@ couldn't use the Guest login?_ ''
 
 '' _Question: how would you manage setting up tests data if
 you hadn't have access to the already pre-seeded data?_ ''  
-**_Answer:_**
+**_Answers:_**
 1. We can inject it via SQL script before the tests execution
 2. We can set up all needed tests data in 'before tests' hook method  
 3. Perhaps, there is available REST API resources for managing all this data, and we can create it all before the tests execution **_[ideas, improvements]_**   
@@ -115,7 +118,12 @@ you hadn't have access to the already pre-seeded data?_ ''
 What needs to be prepared:
 * node.js is installed
 
+_Notes:_
+To structure the code it has been chosen PageObjects design patter, but we can stick to Cypress commands(and actions) if needed, 
+it's just my preference :)
 
+**_[ideas, improvements]:_**
+Add 'id' locators to all web elements that supposed to be using in automation tests
 ___  
 ___  
 ### 3. Bonus task. Scripting / CI (Python):  
@@ -125,6 +133,6 @@ ___
 the script every hour? Please describe in words or
 provide a snippet of code._ ''  
 
-**_Answer:_**
+**_Answers:_**
 1. We can configure manually through the UI (e.g. Jenkins) a Job that is going to run the script by schedule  
 2. We can make all the same(1) but using configuration as a code (e.g. Groovy for Jenkins)  

@@ -1,0 +1,10 @@
+{
+  "name": "pitch-tc",
+  "version": "0.1.0",
+  "scripts": {
+    "start": "cypress open"
+  },
+  "devDependencies": {
+    "cypress": "^8.5.0"
+  }
+}
