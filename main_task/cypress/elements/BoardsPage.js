@@ -1,4 +1,6 @@
-import ListsPage from "./ListsPage";
+import {getPitchPageFactory} from "./factories/PitchPageFactory";
+import {topNavigationBarMixin} from "./mixins/topNavigationBarMixin";
+import {mix} from "../helpers/mix";
 
 export default class BoardsPage {
   createNewBoardButtonLocator = '.createItem_link';
@@ -12,6 +14,10 @@ export default class BoardsPage {
   saveEditProjectButtonLocator = '.project_form-submit';
   cancelEditProjectButtonLocator = '.project_close-form';
 
+  constructor() {
+    mix(this, [topNavigationBarMixin]);
+  }
+
   createNewBoard(title) {
     cy.get(this.createNewBoardButtonLocator)
         .click();
@@ -22,7 +28,7 @@ export default class BoardsPage {
     cy.get(this.createItemButtonLocator)
         .click();
 
-    return new ListsPage();
+    return getPitchPageFactory().getListsPage();
   }
 
   editProject(title=null, desc=null, archive=false) {

@@ -1,8 +1,16 @@
-export default class MainPage {
+import {getPitchPageFactory} from "./factories/PitchPageFactory";
+import {mix} from "../helpers/mix";
+import {topNavigationBarMixin} from "./mixins/topNavigationBarMixin";
+
+export default class HomePage{
   createNewProjectButtonLocator = '.projects_controls > .createItem > .createItem_link > .createItem_title';
   projectTitleInputLocator = '.createItem_input';
   createItemButtonLocator = '.createItem_submit';
   createItemCloseButtonLocator = '.createItem_close';
+
+  constructor() {
+    mix(this, [topNavigationBarMixin]);
+  }
 
   createNewProject(title) {
     cy.get(this.createNewProjectButtonLocator)
@@ -14,6 +22,6 @@ export default class MainPage {
     cy.get(this.createItemButtonLocator)
         .click();
 
-    return this;
+    return getPitchPageFactory().getBoardsPage();
   }
 }

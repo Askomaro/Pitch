@@ -1,14 +1,20 @@
+import {getPitchPageFactory} from "./factories/PitchPageFactory";
+import {mix} from "../helpers/mix";
+import {topNavigationBarMixin} from "./mixins/topNavigationBarMixin";
+
 export default class ListsPage {
-  createNewListInputLocator = '.createItem_title';
+  createNewListInputLocator = '.listsCont_createItem > .createItem_link > .createItem_title';
   listTitleInputLocator = '.createItem_input';
-  createListButtonLocator = '.createItem_submit';
+  createItemButtonLocator = '.createItem_submit';
   createListCloseButtonLocator = '.createItem_close';
-  editProjectButtonLocator = '.project_openForm';
-  editProjectTitleInputLocator = '.project_input';
-  editProjectDescInputLocator = '.project_textarea';
-  archiveProjectButtonLocator = '.tt-source';
-  saveEditProjectButtonLocator = '.project_form-submit';
-  cancelEditProjectButtonLocator = '.project_close-form';
+  archiveListButtonLocator = '.i-archieve';
+  createNewTaskButtonLocator = '.list_create-task-cont > .createItem > .createItem_link > .createItem_title';
+  createNewTaskTitleInputLocator = '.createItem_textarea';
+  archiveBoardButtonLocator = '.board_archieve > .tt-source';
+
+  constructor() {
+    mix(this, [topNavigationBarMixin]);
+  }
 
   createNewList(title) {
     cy.get(this.createNewListInputLocator)
@@ -17,32 +23,71 @@ export default class ListsPage {
     cy.get(this.listTitleInputLocator)
         .type(title);
 
-    cy.get(this.createListButtonLocator)
+    cy.get(this.createItemButtonLocator)
         .click();
 
     return this;
   }
 
-  archiveList(title=null, desc=null, archive=false) {
-    cy.get(this.editProjectButtonLocator)
+  archiveList(title) {
+    cy.contains(title)
+        .parent()
+        .find(this.archiveListButtonLocator);
+
+    return this;
+  }
+
+  createNewTask(title) {
+    cy.get(this.createNewTaskButtonLocator)
         .click();
 
-    if(title){
-      cy.get(this.editProjectTitleInputLocator)
-          .type(title);
-    }
-    if(desc){
-      cy.get(this.editProjectDescInputLocator)
-          .type(desc);
-    }
-    if(archive){
-      cy.get(this.archiveProjectButtonLocator)
-          .click();
-    }
+    cy.get(this.createNewTaskTitleInputLocator)
+        .type(title);
 
-    cy.get(this.saveEditProjectButtonLocator)
+    cy.get(this.createItemButtonLocator)
         .click();
 
     return this;
+  }
+
+  seeArchivedLists() {
+    cy.contains('See archived lists')
+        .click();
+
+    return this;
+  }
+
+  seeActiveLists() {
+    cy.contains('See active lists')
+        .click();
+
+    return this;
+  }
+
+  seeArchivedTasks() {
+    cy.contains('See archived tasks')
+        .click();
+
+    return this;
+  }
+
+  seeActiveTasks() {
+    cy.contains('See active tasks')
+        .click();
+
+    return this;
+  }
+
+  archiveBoard() {
+    cy.get(this.archiveBoardButtonLocator);
+
+    return this;
+  }
+
+  editTask(title) {
+    cy.contains(title)
+        .click();
+
+    return getPitchPageFactory().getTaskPage();
   }
 }

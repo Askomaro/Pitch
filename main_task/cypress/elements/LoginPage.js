@@ -1,4 +1,4 @@
-import MainPage from "./MainPage";
+import {getPitchPageFactory} from "./factories/PitchPageFactory";
 
 export default class LoginPage {
   loginButtonLocator = '.login_test';
@@ -11,6 +11,6 @@ export default class LoginPage {
     cy.get(this.loginButtonLocator)
         .click();
 
-    return new MainPage();
+    return getPitchPageFactory().getHomePage();
   }
 }
