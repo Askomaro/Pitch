@@ -1,4 +1,4 @@
-# Pitch_TC
+# Pitch_TC - Test
 Technical Challenge done for Pitch
 
 ### 1. Warm-up programming task (Python):  
