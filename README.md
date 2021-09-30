@@ -119,11 +119,13 @@ What needs to be prepared:
 * node.js is installed
 
 _Notes:_
-To structure the code it has been chosen PageObjects design patter, but we can stick to Cypress commands(and actions) if needed, 
-it's just my preference :)
+To structure the code it has been chosen 'PageObjects' design patter, but we can stick to Cypress commands(and actions) if needed, 
+it's just my preference :). Within PageObjects there were introduced 'PageFactory' pattern just not to create multiple PageObject instances
+and 'Mixins' to inject the same navigation functionality across the pages. Routes and request intercepts were using to interact with UI changes gracefully. 
 
 **_[ideas, improvements]:_**
-Add 'id' locators to all web elements that supposed to be using in automation tests
+* Add 'id' locators to all web elements that supposed to be using in automation tests  
+* Add REST API resource to delete project/board/list/task/comment etc
 ___  
 ___  
 ### 3. Bonus task. Scripting / CI (Python):  

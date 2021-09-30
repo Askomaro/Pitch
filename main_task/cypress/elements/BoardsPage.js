@@ -1,8 +1,9 @@
 import {getPitchPageFactory} from "./factories/PitchPageFactory";
 import {topNavigationBarMixin} from "./mixins/topNavigationBarMixin";
 import {mix} from "../helpers/mix";
+import BasePage from "./BasePage";
 
-export default class BoardsPage {
+export default class BoardsPage extends BasePage{
   createNewBoardButtonLocator = '.createItem_link';
   boardTitleInputLocator = '.createItem_input';
   createItemButtonLocator = '.createItem_submit';
@@ -13,12 +14,20 @@ export default class BoardsPage {
   archiveProjectButtonLocator = '.tt-source';
   saveEditProjectButtonLocator = '.project_form-submit';
   cancelEditProjectButtonLocator = '.project_close-form';
+  projectTitleLabelLocator = '.project_title';
+  boardsTitleLabelLocator = '.boards_title';
+
+  route = 'boards';
 
   constructor() {
+    super();
+
     mix(this, [topNavigationBarMixin]);
   }
 
   createNewBoard(title) {
+    this.setPostResponseAlias(this.route);
+
     cy.get(this.createNewBoardButtonLocator)
         .click();
 
@@ -27,6 +36,8 @@ export default class BoardsPage {
 
     cy.get(this.createItemButtonLocator)
         .click();
+
+    this.waitForPostResponseAlias();
 
     return getPitchPageFactory().getListsPage();
   }
@@ -66,5 +77,21 @@ export default class BoardsPage {
         .click();
 
     return this;
+  }
+
+  getProjectTitle(){
+    return cy.get(this.projectTitleLabelLocator)
+        .invoke('text');
+  }
+
+  getBoardsTitle(){
+    return this._getWEsText(this.boardsTitleLabelLocator);
+  }
+
+  openBoard(title) {
+    cy.contains(title)
+        .click();
+
+    return getPitchPageFactory().getListsPage();
   }
 }
