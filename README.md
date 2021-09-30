@@ -6,7 +6,7 @@ What needs to be prepared:
 * Python installed (does not matter the version 2 or 3)  
 
 How to run:
-* python warm-up_task/main.py  
+* python3 warm-up_task/main.py  
 
 All tests should be passed, they are divided in 3 categories: positive, negative and errors checking.  
 
@@ -129,7 +129,32 @@ and 'Mixins' to inject the same navigation functionality across the pages. Route
 ___  
 ___  
 ### 3. Bonus task. Scripting / CI (Python):  
+What needs to be prepared:
+* Python installed
+* * cd bonus_task 
+* * venv installed (just a nice practice:))
+* * source venv/bin/activate
+   
+* pip3 install -r requirements.txt
+* generate github api token (https://github.com/settings/tokens)
 
+How to run:
+* python3 super-script.py {your_github_api_token}  
+
+Script is going to print all opened PRs divided in 3 categories: Critical | Important | Other  
+Example:  
+```
+Next Critical opened PR(s) have been found:
+- Hotfix 2
+- Feature 2
+
+Next Important opened PR(s) have been found:
+- Feature 1
+- Feature 3
+
+Other:
+- Hotfix 1
+```
 
 '' _Question: How would you configure a CI job that executes
 the script every hour? Please describe in words or
