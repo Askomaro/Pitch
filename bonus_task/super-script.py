@@ -15,6 +15,7 @@ def get_opened_prs(token):
 
     if not resp.ok:
         print('Request Failed: {0}'.format(resp.text))
+        # :)
 
     return print_nicely(resp)
 
