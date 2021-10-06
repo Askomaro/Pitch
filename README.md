@@ -2,11 +2,16 @@
 Technical Challenge done for Pitch
 
 ### 1. Warm-up programming task (Python):  
+```
+Write a function that checks if a string is a palindrome.
+Then, write the appropriate unit tests for it.
+```
+
 What needs to be prepared:
 * Python installed (does not matter the version 2 or 3)  
 
 How to run:
-* python warm-up_task/main.py  
+* python3 warm-up_task/main.py  
 
 All tests should be passed, they are divided in 3 categories: positive, negative and errors checking.  
 
@@ -17,6 +22,23 @@ All tests should be passed, they are divided in 3 categories: positive, negative
 ___  
 ___  
 ### 2. The main task. UI Testing (Cypress):
+```
+Please visit https://sample-boxd.web.app/login.
+Imagine that there were no tests at all and the company
+is preparing a big release.
+First, write down in words what you think would be
+the most valuable and critical E2E UI tests for this
+Technical Challenge 2
+app, so the company can ship with confidence (aka,
+prepare a written test plan).
+Then, using Cypress, write at least 5 of the most
+important and/or most interesting automated tests.
+For the purpose of this challenge, login as Guest.
+Note that this way (1) you should be logged in as a
+new user every time with a clean state and (2) there
+will be some pre-seeded data data to work with
+(Project: Hello World project and Welcome! board).
+```
 Application that's under testing https://sample-boxd.web.app/login.
 Main e2e UI tests that must be checked before a release (in my opinion):
 #### *Functional:*
@@ -129,7 +151,43 @@ and 'Mixins' to inject the same navigation functionality across the pages. Route
 ___  
 ___  
 ### 3. Bonus task. Scripting / CI (Python):  
+```
+Create a script that fetches from your private repository
+open pull requests against master which have the label
+Important or Critical , and next displays them in a nicely
+formatted list on the console. The script should first
+display the critical PRs, and then the important ones.
+PS: In order to test your script, you'll likely want to
+manually create some PRs in order to have something to
+work with.
+```
 
+What needs to be prepared:
+* Python installed
+* * cd bonus_task 
+* * venv installed (just a nice practice:))
+* * source venv/bin/activate
+   
+* pip3 install -r requirements.txt
+* generate github api token (https://github.com/settings/tokens)
+
+How to run:
+* python3 super-script.py {your_github_api_token}  
+
+Script is going to print all opened PRs divided in 3 categories: Critical | Important | Other  
+Example:  
+```
+Next Critical opened PR(s) have been found:
+- Hotfix 2
+- Feature 2
+
+Next Important opened PR(s) have been found:
+- Feature 1
+- Feature 3
+
+Other:
+- Hotfix 1
+```
 
 '' _Question: How would you configure a CI job that executes
 the script every hour? Please describe in words or
